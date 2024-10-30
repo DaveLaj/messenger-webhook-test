@@ -1,5 +1,6 @@
 import { logError } from '../utils/logger.js';
 import { getHash } from '../utils/hash.js';
+import { sendTextMessage } from '../services/requests/message.js';
 
 /**
  * @typedef {import('express').Request} Request
@@ -158,7 +159,11 @@ async function webhook(req, res) {
         }
 
         for (let i = 0; i < PSIDs.length; i++) {
-            // await processCommand(commands[i], PSIDs[i], pageAccessToken)
+            // do whatever you want to do with the sent message
+
+            await sendTextMessage("Hello World!", PSIDs[i], pageAccessToken);
+
+            // await processCommand(commands[i], PSIDs[i], pageAccessToken) // example
         }
     } catch (error) {
         if (!res.headersSent) {
